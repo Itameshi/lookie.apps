@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:1.21.6
+    ports:
+      - 8000:80
+    volumes:
+      - ./nginx/html:/usr/share/nginx/html
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - django_backend
+
+  django_backend:
+    build: ./django_backend
+    command: python manage.py runserver 0.0.0.0:8001
+    ports:
+      - 8001:8001
+    volumes:
+      - ./django_backend:/opt/django_backend
+    working_dir: /opt/django_backend/backend_api_server
