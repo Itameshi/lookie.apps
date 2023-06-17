@@ -4,6 +4,7 @@ RUN apt update -y && apt upgrade -y
 RUN pip install --upgrade pip
 RUN pip install django==4.2
 RUN pip install djangorestframework==3.14.0
+RUN pip install django-cors-headers==4.1.0
 
 WORKDIR /opt/django_backend
 RUN django-admin startproject backend_api_server
